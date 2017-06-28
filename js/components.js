@@ -137,8 +137,10 @@
             img.src = this.imgs[i];
             lis.appendChild(img);
             imgscon.appendChild(lis);
-            imgscon.style.width = img.width * this.imgs.length + "px";
         }
+        img.onload = function () {
+            imgscon.style.width = img.width * this.imgs.length + "px";
+        }.bind(this);
         //imgscon.style.width = img.width * this.imgs.length + "px";
         //console.log(imgscon.style.width)
         con.appendChild(imgscon);
