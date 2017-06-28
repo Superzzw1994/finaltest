@@ -1,0 +1,38 @@
+a{
+    text-decoration: none;
+}
+img{
+    display: block;
+}
+ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.show{
+    display: block;
+}
+.hide{
+    display:none;
+}
+.active{
+    background-color: white;
+}
+.normal{
+    background-color: black;
+}
+@-webkit-keyframes fade-in {
+    0% {
+        opacity:0;
+    }
+    50% {
+        opacity:0.5;
+    }
+    100% {
+        opacity:1;
+    }
+}
+.anim_fade {
+
+    -webkit-animation: fade-in 500ms;
+}

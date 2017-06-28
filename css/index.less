@@ -1,0 +1,100 @@
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+//版心
+.container {
+  width: 1206px;
+  //height:1000px;
+  margin: 0 auto;
+}
+
+//顶部导航
+.top-nav {
+  width: 100%;
+  line-height: 36px;
+  background-color: #f3f3f3;
+  clear: both;
+}
+
+.top-nav-left {
+  float: left;
+  font-size:12px;
+  font-family: "微软雅黑";
+  a{
+    color:#59ba81;
+  }
+}
+
+.top-nav-right {
+  float: right;
+  font-size:12px;
+  color:#ababab;
+}
+
+.navgaitor{
+  height:90px;
+}
+.bannar{
+  position: relative;
+  .imgsbox{
+    position: relative;
+    overflow: hidden;
+    width:100%;
+    div{
+      img{
+        width:100%;
+      }
+    }
+  }
+  ul{
+    z-index: 10;
+    position: absolute;
+    bottom:14px;
+    left:50%;
+    li{
+      float:left;
+      width:10px;
+      height:10px;
+      margin:6px;
+      border-radius: 50%;
+    }
+  }
+}
+.intr{
+  ul{
+    li{
+      float:left;
+      padding:60px 0;
+      height:298px;
+      width:33.3333%;
+    }
+  }
+}
+.slider{
+  width:100%;
+  overflow: hidden;
+  #target{
+    width:100%;
+   // position: absolute;
+    overflow:hidden;
+    li{
+      float:left;
+      img{
+        width: 100%;
+        height:100%;
+      }
+    }
+  }
+}
