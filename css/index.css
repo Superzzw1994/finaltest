@@ -67,14 +67,49 @@
   margin: 6px;
   border-radius: 50%;
 }
+.intr ul {
+  padding: 60px 0;
+  margin-left: -80px;
+}
 .intr ul li {
   float: left;
-  padding: 60px 0;
-  height: 298px;
+  padding-left: 80px;
   width: 33.3333%;
+  box-sizing: border-box;
 }
 .intr ul li div {
-  display: inline-block;
+  margin: -15px 0 0 100px;
+}
+.intr ul li div a {
+  display: block;
+  font-size: 14px;
+  color: #39a030;
+  margin-top: 30px;
+}
+.intr-a {
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-top: 6px;
+}
+.title {
+  font-size: 22px;
+  line-height: 52px;
+  color: #333333;
+}
+.info {
+  font-size: 14px;
+  line-height: 24px;
+  color: #666666;
+}
+.intr-fir {
+  background: url(../imgs/spirit.png) no-repeat 0 -83px;
+}
+.intr-sec {
+  background: url(../imgs/spirit.png) no-repeat -80px -83px;
+}
+.intr-thr {
+  background: url(../imgs/spirit.png) no-repeat -160px -83px;
 }
 .slider {
   width: 100%;
