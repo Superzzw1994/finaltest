@@ -6,23 +6,37 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>网易教育产品部</title>
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/reset.css">
 </head>
 <body>
+<div class="mask hide" id="mask">
+    <div class="loginbox" id="loginbox">
+        <i id="close-btn"></i>
+        <p>登录网易云课堂</p>
+        <form action="#" method="get" autocomplete="off">
+            <label for="username" id="username-label">账号</label>
+            <input type="text" id="username">
+            <label for="password" id="password-label">密码</label>
+            <input type="password" id="password">
+            <button id="login-btn"></button>
+        </form>
+    </div>
+</div>
 <div class="">
-    <div class="top-nav">
+    <div class="top-nav" id="top-nav">
         <div class="container clearfix">
             <span class="top-nav-left">网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！<a href="#">立即查看 &gt;</a></span>
-            <span class="top-nav-right"><i></i>不再提醒</span>
+            <span class="top-nav-right" id="top-nav-right"><i></i>不再提醒</span>
         </div>
     </div>
     <div class="navgaitor container">
         <div class="logo-box">
             <a href="#" class="logo"><i></i><span>网易教育产品部</span></a>
             <div>
-                <button><i></i>&nbsp;关注</button>
+                <button id="follow-btn" class="follow-btn "><i></i>&nbsp;关注</button>
+                <button id="followed-btn" class="followed-btn hide"><i></i>&nbsp;已关注 <p class="cancel" id="cancel">
+                    取消</p></button>
                 <span>粉丝&nbsp;45</span>
             </div>
         </div>
@@ -70,16 +84,51 @@
     <div class="content">
         <div class="container">
             <div class="left">
-                <div class="btnbox clearfix">
-                    <button class="btn-active">产品设计</button>
-                    <button class="btn-normal">编程语言</button>
-                </div>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                <ul class="btnbox clearfix" id="swap">
+                    <li class="btn-active" id="design">产品设计</li>
+                    <li class="btn-normal" id="code">编程语言</li>
                 </ul>
+                <ul class="classes clearfix" id="classes">
+                </ul>
+                <ul class="page" id="page">
+                    <li><a href="javascript:void(0);" class="spe-li">&gt;</a></li>
+                    <li><a href="javascript:void(0);" class="com-li sel-li">1</a></li>
+                    <li><a href="javascript:void(0);" class="com-li">2</a></li>
+                    <li><a href="javascript:void(0);" class="com-li">3</a></li>
+                    <li><a href="javascript:void(0);" class="spe-li" style="margin-left: 10px">&lt;</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="vedio-box">
+                    <p class="head-title">
+                        机构介绍
+                    </p>
+                    <div class="content-box">
+                        <p class="content-info">观看下面视频了解吧：</p>
+                        <img src="imgs/video.jpg" class="f-csp" id="openVideo" alt="点击播放">
+                    </div>
+                </div>
+                <div class="v-modal" id="videoModal">
+                    <div class="v-modal-box">
+                        <i></i>
+                        <div class="m-video">
+                            <p class="m-video-title">请观看下面的视频</p>
+                            <video autobuffer="" controls="" class="video">
+                                <source src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4"
+                                        type="video/mp4">
+                                <object type="video/mp4">
+                                    <param name="src"
+                                           value="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4">
+                                    <param name="autoplay" value="false">
+                                    <param name="autoStart" value="0">
+                                    <p>
+                                        <a href="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4">Download
+                                            this video file.</a></p>
+                                </object>
+                            </video>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,8 +172,10 @@
         </div>
     </div>
 </div>
-
+<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
+<script src="js/cookie.js"></script>
 <script src="js/components.js"></script>
+<script src="js/index.js"></script>
 <script>
     var slider = new slider({
         imgs: ["imgs/banner1.jpg", "imgs/banner2.jpg", "imgs/banner3.jpg"],
@@ -137,7 +188,18 @@
         timer: 50
     });
 
-
+    ajax({
+        url: "http://study.163.com/webDev/couresByCategory.htm",
+        type: "GET",
+        data: {
+            pageNo: 1,
+            psize: 20,
+            type: 10
+        },
+        success: function (response, xml) {
+            init(response);
+        }
+    })
 </script>
 </body>
 </html>

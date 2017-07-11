@@ -92,7 +92,7 @@
     display: inline-block;
     line-height: 90px;
     padding-left: 32px;
-    button {
+    .follow-btn {
       i {
         display: inline-block;
         width: 8px;
@@ -118,6 +118,40 @@
       margin-top: 35px;
     }
   }
+}
+
+.followed-btn {
+  i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: url("../imgs/spirit.png") no-repeat -111px -9px;
+  }
+  p {
+    display: inline-block;
+    border-left: 1px solid #efefef;
+    padding-left: 8px;
+    color: #999999;
+  }
+  display: inline-block;
+  width: 104px;
+  border: 1px solid #efefef;
+  float: left;
+  line-height: 20px;
+  background-color: #f8f8f8;
+  color: #333333;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-top: 33px;
+}
+
+.followed-btn:hover {
+  background-color: #ffffff;
+}
+
+.cancel:hover {
+  color: #21a557;
+  text-decoration: underline;
 }
 
 .logo {
@@ -229,7 +263,6 @@
   overflow: hidden;
   #target {
     width: 100%;
-    // position: absolute;
     overflow: hidden;
     li {
       float: left;
@@ -243,37 +276,172 @@
 
 .content {
   background-color: #f8f8f8;
-  // height: 300px;
   padding: 80px 0 120px 0;
   .left {
     width: 82%;
     display: inline-block;
+    position: relative;
     .btnbox {
+      display: block;
       padding: 0 0 10px 0;
-      button {
+      li {
         width: 200px;
         line-height: 50px;
         font-size: 20px;
         font-family: "微软雅黑";
         text-align: center;
         float: left;
+        cursor: pointer;
       }
     }
-    ul {
+    .classes {
       li {
         float: left;
-        padding: 1px;
-        margin: 20px 20px 0 0;
-        width: 223px;
-        height: 226px;
-        background-color: #ffffff;
-        border: 1px solid #e6e6e6;
-
+        a {
+          display: block;
+          padding: 1px;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          height: 230px;
+          width: 220.8px;
+          border: 1px solid #ebebeb;
+          box-shadow: 0px 1px 1px 0px #f1f1f1;
+          background: #fff;
+          color: #333;
+        }
+        img {
+          width: 221px;
+          height: 123px;
+        }
+        div {
+          margin: 10px 5px;
+        }
       }
     }
   }
+  .right{
+    width: 18%;
+    float:right;
+    display: inline-block;
+    position: relative;
+    img{
+      width:100%;
+      height:100%;
+    }
+  }
+}
+.head-title{
+  line-height: 56px;
+  font-size:16px;
+  clolor:#333333;
+  background-color: #ffffff;
+  padding-left: 20px;
+}
+.content-box{
+  padding: 20px 23px;
+  background-color: #ffffff;
+  border-top:1px solid #d4d3d3;
+}
+.content-info{
+  font-size:14px;
+  margin-bottom: 10px;
 }
 
+.class-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.company {
+  margin-top:10px;
+  color: #999;
+}
+.v-modal{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+.v-modal-box{
+  padding:10px 8px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  i{
+    display: inline-block;
+    
+  }
+}
+.m-video{
+  margin:2px 22px 28px 26px;
+}
+.m-video-title{
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #444;
+}
+.video{
+  width: 100%;
+}
+.people {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 5px 4px 18px;
+  max-width: 50px;
+  height: 8px;
+  font-size: 8px;
+  color: #999;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: url("../imgs/spirit.png") no-repeat -33px -21px;
+}
+
+.price {
+  margin-top:10px;
+  color: #ff3f00;
+}
+.page{
+  float: right;
+  padding-top: 30px;
+  li{
+    float:left;
+    a{
+      display: inline-block;
+    }
+    a:hover{
+      background-color: #9dd8b1;
+      color:#ffffff;
+    }
+  }
+}
+.spe-li{
+  width: 30px;
+  line-height: 20px;
+  font-size: 12px;
+  background-color: #9dd8b1;
+  color:#ffffff;
+  font-size: 12px;
+  text-align: center;
+}
+.com-li{
+  width:20px;
+  height:20px;
+  font-size: 12px;
+  line-height: 20px;
+  color:#666666;
+  margin-left: 10px;
+  text-align: center;
+}
+.sel-li{
+  background-color: #9dd8b1;
+  color:#ffffff;
+}
 .footer {
   width: 100%;
   //height: 100px;
@@ -355,5 +523,76 @@
     font-size: 12.5px;
     font-family: "微软雅黑";
     margin-bottom: 15px;
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+.loginbox {
+  width: 388px;
+  height: 288px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 30px 0 40px 40px;
+  i {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background: url("../imgs/spirit.png") no-repeat -18px -10px;
+    cursor: pointer;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 800;
+    color: #444444;
+    margin-bottom: 20px;
+  }
+  input {
+    width: 296px;
+    display: block;
+    color: #cccccc;
+    background-color: #fafafa;
+    font-size: 16px;
+    line-height: 44px;
+    font-family: "微软雅黑";
+    font-weight: 200;
+    box-sizing: border-box;
+    border: 1px solid #dfdfdf;
+    box-shadow: 2px 2px 2px #f1f1f1 inset;
+    padding: 0 12px;
+    margin-bottom: 15px;
+  }
+  label {
+    position: absolute;
+    left: 52px;
+    font-size: 16px;
+    font-weight: 200;
+    color: #cccccc;
+    line-height: 44px;
+    cursor: text;
+  }
+  button {
+    display: block;
+    width: 293px;
+    height: 46px;
+    margin-top: 30px;
+    box-shadow: 2px 3px 0 #d5e3da;
+    background: url(../imgs/spirit.png) no-repeat 0 -37px;
+    cursor: pointer;
   }
 }
