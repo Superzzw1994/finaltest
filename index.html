@@ -187,7 +187,6 @@
         speed: 1,
         timer: 50
     });
-
     tools.ajax({
         url: "http://study.163.com/webDev/couresByCategory.htm",
         type: "GET",
@@ -198,7 +197,8 @@
         },
         success: function (response, xml) {
             init(response);
-
+            var data = JSON.parse(response).totalCount;
+            var sp = new paging(data);
         }
     })
 </script>

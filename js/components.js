@@ -208,12 +208,15 @@
 //分页
 (function () {
     function paging(options) {
-        
+        console.log(options);
+        this.data = options;
+        this.init();
     }
+    paging.prototype.init = function () {
+
+    };
+    window.paging = paging;
 })();
-
-
-
 
 
 
