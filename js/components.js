@@ -205,8 +205,12 @@
     }
     window.smooth = smooth;
 })();
-
-
+//分页
+(function () {
+    function paging(options) {
+        
+    }
+})();
 
 
 

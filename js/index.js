@@ -3,119 +3,99 @@
  *
  *
  */
-
+//顶部导航栏cookies操作
 (function () {
-    if (cookieEvent.getCookie("isLogin") && cookieEvent.getCookie("isFollow")) {
-        $("follow-btn").className = "hide";
-        $("followed-btn").className = "followed-btn";
-    }
-    var followBtn = $("follow-btn");
-    var clickHandler = function () {
-        ajax(
-            {
-                url: "http://study.163.com/webDev/attention.htm",
-                type: "GET",
-                data: {},
-                dataType: "json",
-                success: function (response, xml) {
-                    if (!cookieEvent.getCookie("isLogin")) {
-                        $("mask").className = "mask show";
-                    } else {
-                        if (!cookieEvent.getCookie("isFollow")) {
-                            cookieEvent.setCookie("isFollow", parseInt(response), 15);
-                            $("follow-btn").className = "hide";
-                            $("followed-btn").className = "followed-btn";
-                        } else {
-                            return;
-                        }
-                    }
-                }
-            }
-        )
-    }
-    followBtn.addEventListener("click", clickHandler);
-    var cancel = $("cancel");
-    var cancelHandler = function () {
-        cookieEvent.removeCookie("isFollow");
-        $("follow-btn").className = "follow-btn show";
-        $("followed-btn").className = "hide";
-    }
-    cancel.addEventListener("click", cancelHandler);
-})();
-function $(id) {
-    return document.getElementById(id);
-}
-
-(function () {
-    var cookieTarget = $("top-nav-right");
-    var hideTarget = $("top-nav");
-    if (cookieEvent.getCookie("status")) {
+    var cookieTarget = tools.$("top-nav-right");
+    var hideTarget = tools.$("top-nav");
+    //加载页面前判断是否存在cookies
+    if (tools.getCookie("status")) {
         hideTarget.className = "hide";
     }
     var ClickHandler = function () {
-        if (cookieEvent.getCookie("status")) {
+        if (tools.getCookie("status")) {
             return;
         } else {
-            cookieEvent.setCookie("status", "1", 10);
+            //如果不存在就设置cookies并隐藏导航栏
+            tools.setCookie("status", "1", 10);
             hideTarget.className = "hide";
         }
     }
     cookieTarget.addEventListener("click", ClickHandler);
-})();
-function place(id, tar) {
-    var target = $(id);
-    var message = $(tar);
-    var inputHandler = function () {
-        if (target.value == "") {
-            message.className = "show";
-        } else {
-            message.className = "hide";
-        }
-    }
-    target.addEventListener("input", inputHandler);
-}
-
-place("username", "username-label");
-place("password", "password-label");
+})(tools);
+//登录cookies操作
 (function () {
-    var btn = $("login-btn");
+    var btn = tools.$("login-btn");
+    var User = tools.$("username");
+    var Pw = tools.$("password");
     var clickHandler = function () {
-        var userName = $("username").value;
-        var password = $("password").value;
-        ajax({
+        var userName = User.value;
+        var password = Pw.value;
+        tools.ajax({
             url: "http://study.163.com/webDev/login.htm",
             type: "GET",
             data: {"userName": md5(userName), "password": md5(password)},
             dataType: "json",
             success: function (response, xml) {
                 if (parseInt(response) === 1) {
-                    cookieEvent.setCookie("isLogin", "1", 15);
-                    $("mask").className = "mask hide";
+                    tools.setCookie("isLogin", "1", 15);
+                    tools.$("mask").className = "mask hide";
                 } else {
                     alert("用户名或密码错误");
-                    $("username").value = "";
-                    $("password").value = "";
-                    $("username-label").className = "show";
-                    $("password-label").className = "show";
+                    User.value = "";
+                    Pw.value = "";
+                    tools.$("username-label").className = "show";
+                    tools.$("password-label").className = "show";
                 }
             },
         });
         return false;
     }
     btn.addEventListener("click", clickHandler);
-})();
-
+})(tools);
+//关注cookies操作
 (function () {
-    var closebtn = $("close-btn");
-    var clickHandler = function () {
-        $("mask").className = "hide";
+    var followBtn = tools.$("follow-btn");
+    var followedBtn = tools.$("followed-btn");
+    //如果登录与关注的cookie都存在
+    if (tools.getCookie("isLogin") && tools.getCookie("isFollow")) {
+        //显示已关注的按钮
+        followBtn.className = "hide";
+        followedBtn.className = "followed-btn";
     }
-    closebtn.addEventListener("click", clickHandler);
-})();
+    var clickHandler = function () {
+        //如果没登录就弹出登录表单，如果已登录就设置关注cookie并改变按钮样式
+        if (tools.getCookie("isLogin")) {
+            tools.ajax(
+                {
+                    url: "http://study.163.com/webDev/attention.htm",
+                    type: "GET",
+                    data: {},
+                    dataType: "json",
+                    success: function (response, xml) {
+                            tools.setCookie("isFollow", parseInt(response), 15);
+                            followBtn.className = "hide";
+                            followedBtn.className = "followed-btn";
+                    }
+                }
+            )
+        } else {
+            tools.$("mask").className = "mask show";
+        }
+    }
+    followBtn.addEventListener("click", clickHandler);
+    //点击取消按钮清除关注cookie，改变按钮样式
+    var cancel = tools.$("cancel");
+    var cancelHandler = function () {
+        tools.removeCookie("isFollow");
+        followBtn.className = "follow-btn show";
+        followedBtn.className = "hide";
+    }
+    cancel.addEventListener("click", cancelHandler);
+})(tools);
 
 
 (function () {
-    var swap = $("swap");
+    var swap = tools.$("swap");
     var child = swap.getElementsByTagName("li");
     var clickHandler = function (e) {
         if (e.target.className === "btn-normal") {
@@ -123,14 +103,15 @@ place("password", "password-label");
                 child[i].className = "btn-normal";
             }
             e.target.className = "btn-active";
-            var page = $("page");
+            var page = tools.$("page");
             var _child = page.getElementsByTagName("a");
             if (e.target === child[0]) {
                 for (var i = 0; i < _child.length; i++) {
                     if (i > 0 && i < _child.length - 1) {
                         _child[i].className = "com-li";
-                        _child[1].className = "com-li spe-li";
-                        ajax({
+                        _child[1].className = "com-li sel-li";
+                        console.log("完成")
+                        tools.ajax({
                             url: "http://study.163.com/webDev/couresByCategory.htm",
                             type: "GET",
                             data: {
@@ -150,8 +131,8 @@ place("password", "password-label");
                 for (var i = 0; i < _child.length; i++) {
                     if (i > 0 && i < _child.length - 1) {
                         _child[i].className = "com-li";
-                        _child[1].className = "com-li spe-li";
-                        ajax({
+                        _child[1].className = "com-li sel-li";
+                        tools.ajax({
                             url: "http://study.163.com/webDev/couresByCategory.htm",
                             type: "GET",
                             data: {
@@ -171,23 +152,25 @@ place("password", "password-label");
         }
     };
     swap.addEventListener("click", clickHandler);
-})();
-
+})(tools);
+//分页模块
 (function () {
-    var page = $("page");
+    var page = tools.$("page");
+    var target = tools.$("swap");
     var child = page.getElementsByTagName("a");
-    for (var i = 0; i < child.length; i++) {
-        child[i].index = i;
-        if (child[i].className === "com-li sel-li") {
-            var index = i;
-        }
-    }
-
+    var swapBtn = target.getElementsByTagName("li");
     var clickHandler = function (e) {
-        var target = $("swap");
-        var _child = target.getElementsByTagName("li");
-        for (var i = 0; i < _child.length; i++) {
-            if (_child[i].className === "btn-active") {
+        //找到当前被选中的按钮
+        for (var i = 0; i < child.length; i++) {
+            //child[i].index = i;
+            if (child[i].className === "com-li sel-li") {
+                var index = i;
+                console.log(index);
+            }
+        }
+        //确定在哪个tab栏下
+        for (var i = 0; i < swapBtn.length; i++) {
+            if (swapBtn[i].className === "btn-active") {
                 switch (i) {
                     case 0:
                         _type = 10;
@@ -198,15 +181,13 @@ place("password", "password-label");
                 }
             }
         }
-        console.log(_type);
         if (e.target.tagName.toLowerCase() === "a") {
             switch (e.target) {
                 case child[0]:
                     if (index < child.length - 2) {
                         child[index].className = "com-li";
                         child[index + 1].className = "com-li sel-li";
-                        index++;
-                        ajax({
+                        tools.ajax({
                             url: "http://study.163.com/webDev/couresByCategory.htm",
                             type: "GET",
                             data: {
@@ -218,7 +199,7 @@ place("password", "password-label");
                                 init(response);
                             }
                         })
-
+                        index++;
                     } else {
                         return;
                     }
@@ -227,13 +208,12 @@ place("password", "password-label");
                     if (index > 1) {
                         child[index].className = "com-li";
                         child[index - 1].className = "com-li sel-li";
-                        index--;
-                        console.log(index + 1);
-                        ajax({
+                        //console.log(index-1);
+                        tools.ajax({
                             url: "http://study.163.com/webDev/couresByCategory.htm",
                             type: "GET",
                             data: {
-                                pageNo: index + 1,
+                                pageNo: index - 1,
                                 psize: 20,
                                 type: _type
                             },
@@ -241,6 +221,7 @@ place("password", "password-label");
                                 init(response);
                             }
                         })
+                        index--;
                     } else {
                         return;
                     }
@@ -248,6 +229,7 @@ place("password", "password-label");
                 default:
                     for (var i = 0; i < child.length; i++) {
                         if (child[i].className === "com-li sel-li") {
+                            //console.log(i);
                             var _index = i;
                         }
                     }
@@ -255,6 +237,7 @@ place("password", "password-label");
                         return;
                     } else {
                         e.target.className = "com-li sel-li";
+
                         console.log(child[_index]);
                         child[_index].className = "com-li";
                         for (var i = 0; i < child.length; i++) {
@@ -263,7 +246,7 @@ place("password", "password-label");
                             }
                         }
                         console.log(page_No);
-                        ajax({
+                        tools.ajax({
                             url: "http://study.163.com/webDev/couresByCategory.htm",
                             type: "GET",
                             data: {
@@ -283,42 +266,96 @@ place("password", "password-label");
         }
     }
     page.addEventListener("click", clickHandler);
-})();
-
+})(tools);
+//构建课程模块
 function init(para) {
-    function create(p) {
-        return document.createElement(p);
-    }
     var data = JSON.parse(para).list;
     console.log(data);
-    var container = $("classes");
+    var container = tools.$("classes");
     container.innerHTML = "";
     for (var i = 0; i < data.length; i++) {
-        var inner = create("li");
-        inner.setAttribute("id", data[i].id)
-        var link = create("a");
-        var img = create("img");
-        img.src = data[i].bigPhotoUrl;
-        var box = create("div");
-        var title = create("h1");
+        //创建外部容器 li
+        var inner = tools.create("li");
+        //设置id
+        inner.setAttribute("id", data[i].id);
+        //创建盒子
+        var box = tools.create("div");
+        //设置课程名称
+        var title = tools.create("h1");
         title.className = "class-title";
         title.innerHTML = data[i].name;
-        var title2 = create("h2");
-        title2.className = "company";
-        title2.innerHTML = data[i].provider;
-        var title3 = create("p");
-        title3.className = "people";
-        title3.innerHTML = data[i].learnerCount;
-        var title4 = create("p");
-        title4.className = "price";
-        title4.innerHTML = "$" + data[i].price;
+        //设置机构
+        var company = tools.create("h2");
+        company.className = "company";
+        company.innerHTML = data[i].provider;
+        //设置关注人数
+        var people = tools.create("p");
+        people.className = "people";
+        people.innerHTML = data[i].learnerCount;
+        //设置价格
+        var price = tools.create("p");
+        price.className = "price";
+        if (data[i].price) {
+            price.innerHTML = "$" + data[i].price;
+        } else {
+            price.innerHTML = "免费";
+        }
+        //添加节点
         box.appendChild(title);
-        box.appendChild(title2);
-        box.appendChild(title3);
-        box.appendChild(title4);
+        box.appendChild(company);
+        box.appendChild(people);
+        box.appendChild(price);
+        //创建图片
+        var img = tools.create("img");
+        img.src = data[i].bigPhotoUrl;
+        //创建标签
+        var link = tools.create("a");
+        //添加节点
         link.appendChild(img);
         link.appendChild(box);
+        //挂载到容器上
         inner.appendChild(link);
         container.appendChild(inner);
     }
 }
+//点击关闭事件模块
+(function () {
+    //点击关闭登录表单
+    tools.closehandler({
+        trigger: "close-btn",
+        target: "mask",
+        Ev: "click",
+        className: "hide"
+    })
+    //点击视频缩略图弹出视频modal
+    tools.closehandler({
+        trigger: "openVideo",
+        target: "videoModal",
+        Ev: "click",
+        className: "v-modal"
+    });
+    //点击右上X关闭视频modal
+    tools.closehandler({
+        trigger: "video-closeBtn",
+        target: "videoModal",
+        Ev: "click",
+        className: "hide"
+    })
+})(tools);
+//利用lable模拟placeholder函数
+function placeHolder(id, tar) {
+    var target = tools.$(id);
+    var message = tools.$(tar);
+    var inputHandler = function () {
+        if (target.value == "") {
+            message.className = "show";
+        } else {
+            message.className = "hide";
+        }
+    }
+    target.addEventListener("input", inputHandler);
+}
+//登录表单 username调用
+placeHolder("username", "username-label");
+//密码调用
+placeHolder("password", "password-label");

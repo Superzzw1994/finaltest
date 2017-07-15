@@ -108,9 +108,9 @@
                         <img src="imgs/video.jpg" class="f-csp" id="openVideo" alt="点击播放">
                     </div>
                 </div>
-                <div class="v-modal" id="videoModal">
+                <div class="v-modal hide" id="videoModal">
                     <div class="v-modal-box">
-                        <i></i>
+                        <i id="video-closeBtn" class="vedio-closeBtn"></i>
                         <div class="m-video">
                             <p class="m-video-title">请观看下面的视频</p>
                             <video autobuffer="" controls="" class="video">
@@ -173,7 +173,7 @@
     </div>
 </div>
 <script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script>
-<script src="js/cookie.js"></script>
+<script src="js/tools.js"></script>
 <script src="js/components.js"></script>
 <script src="js/index.js"></script>
 <script>
@@ -188,7 +188,7 @@
         timer: 50
     });
 
-    ajax({
+    tools.ajax({
         url: "http://study.163.com/webDev/couresByCategory.htm",
         type: "GET",
         data: {
@@ -198,6 +198,7 @@
         },
         success: function (response, xml) {
             init(response);
+
         }
     })
 </script>
