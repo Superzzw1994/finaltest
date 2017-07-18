@@ -170,7 +170,7 @@
                         tarchild[i + 1].className = "first";
                         target.removeChild(tarchild[i]);
                         target.style.marginLeft = 0 + "px";
-                        target.style.width = tarchild[i].firstChild.width * this.imgs.length  + "px";
+                        target.style.width = tarchild[i].firstChild.width * this.imgs.length + "px";
                     }
                 } else {
                     return;
@@ -207,20 +207,129 @@
 })();
 //分页
 (function () {
-    function paging(options) {
-        console.log(options);
-        this.data = options;
+    function paging(options, id) {
+        this.id = id;
+        this.data = options.totalCount;
+        this.page = options.pagination.pageSize;
+        this.length = Math.ceil(this.data / this.page)
         this.init();
     }
-    paging.prototype.init = function () {
 
+    paging.prototype.init = function () {
+        var target = tools.$(this.id);
+        var child = target.getElementsByTagName("a");
+        for (var i = 0; i < this.length + 2; i++) {
+            var con = tools.create("li");
+            var link = tools.create("a");
+            link.herf = "javascript:void(0);";
+            con.appendChild(link);
+            target.appendChild(con);
+        }
+        for (var j = 0; j < child.length; j++) {
+            //console.log(child.length - 1);
+            switch (j) {
+                case 0:
+                    child[0].className = "spe-li";
+                    child[0].innerHTML = "&gt;";
+                    break;
+                case 1:
+                    child[1].className = "com-li sel-li";
+                    child[1].innerHTML = 1;
+                    break;
+                case child.length - 1:
+                    child[child.length - 1].className = "spe-li m-l";
+                    child[child.length - 1].innerHTML = "&lt;";
+                    break;
+                default:
+                    child[j].className = "com-li";
+                    child[j].innerHTML = j;
+                    break;
+            }
+        }
     };
     window.paging = paging;
-})();
+})(tools);
 
+//抖动
 
+(function () {
+    function shake(options) {
+        this.target = tools.$(options.id);
+        this.speed = options.speed;
+        this.leng = options.leng;
+        this.dis = options.dis;
 
+        this.move();
+    }
 
+    shake.prototype.move = function () {
+        var trigger = parseInt(getComputedStyle(this.target).getPropertyValue(this.dis));
+        if (this.target.onOff === true) {
+            return;
+        }
+        this.target.onOff = true;
+        var num = 0;
+        var arr = [];
+        var timer = null;
+        for (i = this.leng; i > 0; i -= this.speed) {
+            arr.push(i);
+            arr.push(-i);
+        }
+        arr.push(0);
+        clearInterval(timer);
+        timer = setInterval(function () {
+            this.target.style[this.dis] = trigger + arr[num] + "px";
+            num++;
+            if (num === arr.length) {
+                clearInterval(timer);
+                this.target.onOff = false;
+            }
 
+        }.bind(this), 50);
+    }
+    window.shake = shake;
+})(tools);
 
+//滑动
+(function () {
+    function slide(para) {
+        //滑动元素
+        this.target = tools.$(para.target);
+        console.log(this.target);
+        //方向
+        this.dis = para.dis;
+        //速度
+        this.speed = para.speed;
+        //时间
+        this.time = para.time;
+        //滑动距离
+        this.leng = para.leng;
+        //回调函数
+        this.tri = para.tri;
+        this.move();
+    }
+
+    slide.prototype.move = function () {
+        var timer = null;
+        clearInterval(timer);
+        function doMove() {
+            var trigger = parseInt(getComputedStyle(this.target).getPropertyValue(this.dis));
+            //console.log(trigger);
+            this.target.style[this.dis] = trigger - this.speed + "px";
+            if (parseInt(this.target.style[this.dis]) === this.leng) {
+                clearInterval(timer);
+                var list = this.target.getElementsByTagName("li")[0];
+                console.log(list);
+                this.target.removeChild(list);
+                this.target.appendChild(list);
+                console.log(this.target);
+            }
+           this.callback();
+        }
+
+        timer = setInterval(doMove.bind(this), this.time);
+    }
+
+    window.slide = slide;
+})(tools);
 

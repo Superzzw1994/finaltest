@@ -14,12 +14,12 @@
     <div class="loginbox" id="loginbox">
         <i id="close-btn"></i>
         <p>登录网易云课堂</p>
-        <form action="#" method="get" autocomplete="off">
+        <form action="#" method="get" autocomplete="off" id="formUp">
             <label for="username" id="username-label">账号</label>
-            <input type="text" id="username">
+            <input type="text" id="username" autocomplete="off">
             <label for="password" id="password-label">密码</label>
             <input type="password" id="password">
-            <button id="login-btn"></button>
+            <button id="login-btn" type="submit"></button>
         </form>
     </div>
 </div>
@@ -91,11 +91,6 @@
                 <ul class="classes clearfix" id="classes">
                 </ul>
                 <ul class="page" id="page">
-                    <li><a href="javascript:void(0);" class="spe-li">&gt;</a></li>
-                    <li><a href="javascript:void(0);" class="com-li sel-li">1</a></li>
-                    <li><a href="javascript:void(0);" class="com-li">2</a></li>
-                    <li><a href="javascript:void(0);" class="com-li">3</a></li>
-                    <li><a href="javascript:void(0);" class="spe-li" style="margin-left: 10px">&lt;</a></li>
                 </ul>
             </div>
             <div class="right">
@@ -127,6 +122,15 @@
                                 </object>
                             </video>
                         </div>
+                    </div>
+                </div>
+                <div class="hot-ranking">
+                    <p class="head-title">
+                        最热排行
+                    </p>
+                    <div class="ranking-container">
+                        <ul id="ranking">
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -197,10 +201,22 @@
         },
         success: function (response, xml) {
             init(response);
-            var data = JSON.parse(response).totalCount;
-            var sp = new paging(data);
+
+            var data = JSON.parse(response);
+            var sp = new paging(data, "page");
         }
-    })
+    });
+    tools.ajax({
+        url: "http://study.163.com/webDev/hotcouresByCategory.htm",
+        type: "GET",
+        success: function (response, xml) {
+            var data = JSON.parse(response);
+            initRanking(data);
+        }
+    });
+    zzz(tools);
+   // hover();
+    //aaa();
 </script>
 </body>
 </html>

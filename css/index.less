@@ -278,7 +278,6 @@
   background-color: #f8f8f8;
   padding: 80px 0 120px 0;
   .left {
-    width: 82%;
     display: inline-block;
     position: relative;
     .btnbox {
@@ -295,20 +294,24 @@
       }
     }
     .classes {
+      position: relative;
+      li:hover{
+        visibility: hidden;
+      }
+      .hover-box:hover{
+        display: block;
+      }
       li {
         float: left;
-        a {
-          display: block;
-          padding: 1px;
-          margin-right: 20px;
-          margin-bottom: 20px;
-          height: 230px;
-          width: 220.8px;
-          border: 1px solid #ebebeb;
-          box-shadow: 0px 1px 1px 0px #f1f1f1;
-          background: #fff;
-          color: #333;
-        }
+        margin: 0 20px 20px 0;
+        display: block;
+        padding: 1px;
+        height: 230px;
+        width: 220.8px;
+        border: 1px solid #ebebeb;
+        box-shadow: 0px 1px 1px 0px #f1f1f1;
+        background: #fff;
+        color: #333;
         img {
           width: 221px;
           height: 123px;
@@ -319,31 +322,82 @@
       }
     }
   }
-  .right{
-    width: 18%;
-    float:right;
+  .right {
+    width: 225px;
+    float: right;
     display: inline-block;
     position: relative;
-    img{
-      width:100%;
-      height:100%;
+    .f-csp {
+      width: 100%;
+      height: 100%;
     }
   }
 }
-.head-title{
+.hover-box{
+  width: 475px;
+  position: absolute;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 2px rgba(0,0,0,.2);
+  z-index: 1000;
+}
+.top-content{
+  padding: 20px;
+  background-color: #fff;
+  img{
+    display: block;
+    width: 220px;
+    height: 120px;
+    float: left;
+  }
+  div{
+    width: 195px;
+    display: block;
+    float: left;
+    margin-left: 20px;
+    p{
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    h2{
+      font-size: 18px;
+      color: #666;
+      line-height: 18px;
+      margin-bottom: 20px;
+    }
+  }
+}
+.hover-people{
+  width:100px;
+  padding-left: 18px;
+  background: url("../imgs/spirit.png") no-repeat -38px -23px;
+}
+.bottom-content{
+  padding: 20px;
+  background-color: #f8f8f8;
+  p{
+    font-size: 14px;
+    margin-bottom: 0;
+    word-break:break-word;
+  }
+}
+.head-title {
   line-height: 56px;
-  font-size:16px;
-  clolor:#333333;
+  font-size: 16px;
+  clolor: #333333;
   background-color: #ffffff;
   padding-left: 20px;
+  z-index: 999;
 }
-.content-box{
-  padding: 20px 23px;
+
+.content-box {
+  padding: 20px 22px 20px 23px;
   background-color: #ffffff;
-  border-top:1px solid #d4d3d3;
+  border-top: 1px solid #d4d3d3;
 }
-.content-info{
-  font-size:14px;
+
+.content-info {
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
@@ -354,10 +408,11 @@
 }
 
 .company {
-  margin-top:10px;
+  margin-top: 10px;
   color: #999;
 }
-.v-modal{
+
+.v-modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -366,14 +421,15 @@
   background: rgba(0, 0, 0, 0.8);
   z-index: 9999;
 }
-.v-modal-box{
-  padding:10px 8px;
+
+.v-modal-box {
+  padding: 10px 8px;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   background-color: #fff;
-  i{
+  i {
     display: block;
     position: absolute;
     top: 10px;
@@ -384,18 +440,22 @@
     cursor: pointer;
   }
 }
-.m-video{
-  margin:20px 22px 28px 26px;
+
+.m-video {
+  margin: 20px 22px 28px 26px;
 }
-.m-video-title{
+
+.m-video-title {
   margin-bottom: 20px;
   font-size: 18px;
   color: #444;
 }
-.video{
+
+.video {
   width: 100%;
 }
-.vedio-closeBtn{
+
+.vedio-closeBtn {
   display: inline-block;
   position: absolute;
   top: 10px;
@@ -405,7 +465,44 @@
   background: url("../imgs/spirit.png") no-repeat -18px -10px;
   cursor: pointer;
 }
-.people {
+.ranking-container{
+  height: 700px;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 0px 20px 20px 20px;
+  border-top:1px solid #d4d3d3 ;
+  position: relative;
+}
+.hot-ranking {
+  ul {
+    top:20px;
+    height: 680px;
+    //background-color: #ffffff;
+    //overflow: hidden;
+    //border-top:1px solid #d4d3d3 ;
+    position: absolute;
+    li {
+      margin-bottom: 20px;
+      height: 50px;
+      a {
+        display: inline-block;
+        img {
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+.ranking-box {
+  display: inline-block;
+  float: left;
+}
+
+.ranking-people {
   display: inline-block;
   margin-top: 10px;
   padding: 3px 5px 4px 18px;
@@ -413,51 +510,73 @@
   height: 8px;
   font-size: 8px;
   color: #999;
-  border: 1px solid #ddd;
   border-radius: 2px;
-  background: url("../imgs/spirit.png") no-repeat -33px -21px;
+  background: url("../imgs/spirit.png") no-repeat -36px -20px;
+}
+
+.ranking-title {
+  max-width: 125px;
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.people {
+  display: inline-block;
+  margin-top: 10px;
+  line-height: 13px;
+  padding-left: 17px;
+  color: #999;
+  background: url("../imgs/spirit.png") no-repeat -33px -23px;
 }
 
 .price {
-  margin-top:10px;
+  margin-top: 10px;
   color: #ff3f00;
 }
-.page{
+
+.page {
   float: right;
   padding-top: 30px;
-  li{
-    float:left;
-    a{
+  li {
+    float: left;
+    a {
       display: inline-block;
     }
-    a:hover{
+    a:hover {
       background-color: #9dd8b1;
-      color:#ffffff;
+      color: #ffffff;
     }
   }
 }
-.spe-li{
+
+.spe-li {
   width: 30px;
   line-height: 20px;
   font-size: 12px;
   background-color: #9dd8b1;
-  color:#ffffff;
+  color: #ffffff;
   font-size: 12px;
   text-align: center;
 }
-.com-li{
-  width:20px;
-  height:20px;
+
+.com-li {
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   line-height: 20px;
-  color:#666666;
+  color: #666666;
   margin-left: 10px;
   text-align: center;
 }
-.sel-li{
+
+.sel-li {
   background-color: #9dd8b1;
-  color:#ffffff;
+  color: #ffffff;
 }
+
 .footer {
   width: 100%;
   //height: 100px;

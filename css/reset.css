@@ -74,7 +74,9 @@ button, input {
 .normal {
     background-color: black;
 }
-
+.m-l{
+ margin-left: 10px;
+}
 @-webkit-keyframes fade-in {
     0% {
         opacity: 0;
@@ -104,8 +106,4 @@ button, input {
 
 .fl-l {
     float: left;
-}
-
-.hide {
-    display: none;
 }
