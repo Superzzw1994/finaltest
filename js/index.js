@@ -277,60 +277,33 @@
     }
     page.addEventListener("click", clickHandler);
 })(tools);
-//课程hover
-// function hover() {
-//     var parent = tools.$("classes");
-//     var overHandler = function (e) {
-//             var l = e.target;
-//             while(l.tagName !== 'LI'){
-//                 if(l === parent){
-//                     l = null;
-//                     break;
-//                 }
-//                 l = l.parentNode;
-//             }
-//             if(l){
-//                 console.log("in")
-//                // l.nextSibling.className = "hover-box";
-//                 console.log(e.target);
-//             }
-//     };
-//     var outHandler = function (e) {
-//         var l = e.target;
-//         while(l.tagName !== 'LI'){
-//             if(l === parent){
-//                 l = null;
-//                 break;
-//             }
-//             l = l.parentNode;
-//         }
-//         if(l){
-//             console.log("out")
-//             console.log(e.target);
-//            // l.nextSibling.className = "hover-box hide";
-//         }else{
-//             return false;
-//         }
-//
-//     };
-//     parent.addEventListener("mouseover",overHandler,true);
-//     parent.addEventListener("mouseout",outHandler,true);
-// };
 
-// function aaa() {
-//     window.onload = function () {
-//         console.log(1)
-//         var container = tools.$("classes").getElementsByTagName("li");
-//         for (var i = 0; i < container.length; i++) {
-//             container[i].addEventListener("mouseover",function () {
-//                 console.log(this);
-//             },true);
-//             container[i].addEventListener("mouseout",function () {
-//                 console.log("2");
-//             },true)
-//         }
-//     }
-// }
+//课程hover
+function hover() {
+    var parent = tools.$("classes");
+    var overHandler = function (e) {
+        var l = e.target;
+        while(l.tagName !== 'LI'){
+
+            if(l === parent){
+                l = null;
+                break;
+            }
+            l = l.parentNode;
+        }
+        if (l) {
+            console.log(l)
+        }else {
+            console.log(l)
+        }
+    };
+    var outHandler = function (e) {
+        console.log(1);
+    };
+    parent.addEventListener("mouseover", overHandler);
+    //parent.addEventListener("mouseout", outHandler);
+};
+
 
 
 //构建课程模块
@@ -374,30 +347,32 @@ function init(para) {
         var img = tools.create("img");
         img.src = data[i].bigPhotoUrl;
         //添加节点
-        inner.appendChild(img);
-        inner.appendChild(box);
+        var div = tools.create("div");
+        div.className = "zzzzzz";
+        div.appendChild(img);
+        div.appendChild(box);
+        inner.appendChild(div);
         //挂载到容器上
-
-        container.appendChild(inner);
+        // inner.appendChild(hoverbox);
+        // container.appendChild(inner);
         var hoverbox = tools.create("div");
-        if(parseInt(getComputedStyle(container).getPropertyValue("width"))=== 980){
-            if(i<4){
-                console.log("se");
-                hoverbox.style.left = i * 245 +"px";
-            }else{
-                hoverbox.style.left = (i%4) * 245 +"px";
-                hoverbox.style.top = (Math.floor(i/4))*256 + "px";
-            }
-        }else {
-            if(i<3){
-                console.log("ze");
-                hoverbox.style.left = i * 245 +"px";
-            }else{
-                hoverbox.style.left = (i%3) * 245 +"px";
-                hoverbox.style.top = (Math.floor(i/3))*256 + "px";
-            }
-        }
-        console.log(hoverbox)
+        // if(parseInt(getComputedStyle(container).getPropertyValue("width"))=== 980){
+        //     if(i<4){
+        //         console.log("se");
+        //         hoverbox.style.left = i * 245 +"px";
+        //     }else{
+        //         hoverbox.style.left = (i%4) * 245 +"px";
+        //         hoverbox.style.top = (Math.floor(i/4))*256 + "px";
+        //     }
+        // }else {
+        //     if(i<3){
+        //         console.log("ze");
+        //         hoverbox.style.left = i * 245 +"px";
+        //     }else{
+        //         hoverbox.style.left = (i%3) * 245 +"px";
+        //         hoverbox.style.top = (Math.floor(i/3))*256 + "px";
+        //     }
+        // }
         hoverbox.className = "hover-box hide";
         var top_content = tools.create("div");
         top_content.className = "top-content clearfix";
@@ -426,9 +401,12 @@ function init(para) {
         bot_p.innerHTML = data[i].description;
         bot_content.appendChild(bot_p);
         hoverbox.appendChild(bot_content);
-        container.appendChild(hoverbox)
+        //container.appendChild(hoverbox)
+        inner.appendChild(hoverbox);
+        container.appendChild(inner);
     }
 }
+
 //构建热门课程
 function initRanking(para) {
     var container = tools.$("ranking");
@@ -451,6 +429,7 @@ function initRanking(para) {
         container.appendChild(con);
     }
 }
+
 //热门课程滚动
 // function zzz(tools) {
 //     var container = tools.$("ranking");
@@ -514,6 +493,7 @@ function zzz(tools) {
         className: "hide"
     })
 })(tools);
+
 //利用lable模拟placeholder函数
 function placeHolder(id, tar) {
     var target = tools.$(id);
@@ -527,6 +507,7 @@ function placeHolder(id, tar) {
     }
     target.addEventListener("input", inputHandler);
 }
+
 //登录表单 username调用
 placeHolder("username", "username-label");
 //密码调用
