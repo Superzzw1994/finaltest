@@ -26,6 +26,8 @@
 (function () {
     var followBtn = tools.$("follow-btn");
     var followedBtn = tools.$("followed-btn");
+    //var loginbox = tools.$("loginbox");
+    console.log(loginbox);
     //如果登录与关注的cookie都存在
     if (tools.getCookie("isLogin") && tools.getCookie("isFollow")) {
         //显示已关注的按钮
@@ -44,12 +46,14 @@
                     success: function (response, xml) {
                         tools.setCookie("isFollow", parseInt(response), 15);
                         followBtn.className = "hide";
-                        followedBtn.className = "followed-btn";
+                        //followedBtn.className = "followed-btn";
+
                     }
                 }
             )
         } else {
             tools.$("mask").className = "mask show";
+            loginbox.className = "loginbox bounce"
         }
     }
     followBtn.addEventListener("click", clickHandler);
@@ -303,9 +307,6 @@ function hover() {
     parent.addEventListener("mouseover", overHandler);
     //parent.addEventListener("mouseout", outHandler);
 };
-
-
-
 //构建课程模块
 function init(para) {
     var data = JSON.parse(para).list;
@@ -348,31 +349,12 @@ function init(para) {
         img.src = data[i].bigPhotoUrl;
         //添加节点
         var div = tools.create("div");
-        div.className = "zzzzzz";
+        div.className = "up-hover";
         div.appendChild(img);
         div.appendChild(box);
         inner.appendChild(div);
         //挂载到容器上
-        // inner.appendChild(hoverbox);
-        // container.appendChild(inner);
         var hoverbox = tools.create("div");
-        // if(parseInt(getComputedStyle(container).getPropertyValue("width"))=== 980){
-        //     if(i<4){
-        //         console.log("se");
-        //         hoverbox.style.left = i * 245 +"px";
-        //     }else{
-        //         hoverbox.style.left = (i%4) * 245 +"px";
-        //         hoverbox.style.top = (Math.floor(i/4))*256 + "px";
-        //     }
-        // }else {
-        //     if(i<3){
-        //         console.log("ze");
-        //         hoverbox.style.left = i * 245 +"px";
-        //     }else{
-        //         hoverbox.style.left = (i%3) * 245 +"px";
-        //         hoverbox.style.top = (Math.floor(i/3))*256 + "px";
-        //     }
-        // }
         hoverbox.className = "hover-box hide";
         var top_content = tools.create("div");
         top_content.className = "top-content clearfix";

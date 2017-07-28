@@ -6,7 +6,7 @@
 
     .classes {
         width: 735px;
-        height:1778px;
+        height: 1778px;
     }
 }
 
@@ -18,7 +18,7 @@
 
     .classes {
         width: 980px;
-        height:1270px;
+        height: 1270px;
     }
 }
 
@@ -35,6 +35,21 @@ body, textarea, input, button, select, keygen, legend {
     font: 12px/1.14 arial, 'Microsoft YaHei';
     color: #333;
     outline: 0;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both;
 }
 
 a {
@@ -76,9 +91,11 @@ button, input {
 .normal {
     background-color: black;
 }
-.m-l{
- margin-left: 10px;
+
+.m-l {
+    margin-left: 10px;
 }
+
 @-webkit-keyframes fade-in {
     0% {
         opacity: 0;
@@ -95,7 +112,20 @@ button, input {
 
     -webkit-animation: fade-in 500ms;
 }
-
+@-webkit-keyframes move{
+    0%{
+        transform: scale(0);
+    }
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.bounce{
+    -webkit-animation:500ms move linear;
+}
 .btn-active {
     color: #ffffff;
     background-color: #39a030;

@@ -1,17 +1,3 @@
-.clearfix {
-  *zoom: 1;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-
-.clearfix:after {
-  clear: both;
-}
 
 //版心
 .container {
@@ -28,16 +14,19 @@
   background-color: #f3f3f3;
 
 }
-
+//顶部导航左侧
 .top-nav-left {
   float: left;
   font-size: 12px;
   font-family: "微软雅黑";
   a {
     color: #59ba81;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
-
+//顶部导航右侧
 .top-nav-right {
   float: right;
   font-size: 12px;
@@ -47,10 +36,13 @@
     height: 10px;
     display: inline-block;
     padding-right: 6px;
-    background: #f3f3f3 url("../imgs/spirit.png") no-repeat -18px -10px;
+    background: #f3f3f3 url("../imgs/spirit.png") no-repeat -284px -26px;
+  }
+  &:hover{
+    cursor: pointer;
   }
 }
-
+//导航
 .navgaitor {
   height: 90px;
   ul {
@@ -61,65 +53,47 @@
     }
   }
 }
-
-.nav-link {
-  padding-left: 60px;
-  a {
-    display: inline-block;
-    color: #666666;
-    font-size: 16px;
-    font-family: "冬青黑体简体中文 W3";
-    line-height: 90px;
-  }
-}
-
-.nav-srch {
-  padding: 36px 16px 0 30px;
-  height: 90px;
-  a {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    background: url("../imgs/spirit.png") no-repeat;
-  }
-}
-
 .logo-box {
   float: left;
   display: inline-block;
-  div {
-    float: left;
+  height: 90px;
+  span {
     display: inline-block;
-    line-height: 90px;
-    padding-left: 32px;
-    .follow-btn {
-      i {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background: url("../imgs/spirit.png") no-repeat -45px -6px;
-      }
-      display: inline-block;
-      width: 54px;
-      float: left;
-      line-height: 20px;
-      background-color: #21a557;
-      color: #ffffff;
-      font-size: 12px;
-      border-radius: 2px;
-      margin-top: 33px;
-    }
-    span {
-      display: inline-block;
-      float: left;
-      font-size: 12px;
-      line-height: 20px;
-      padding: 0 0 0 14px;
-      margin-top: 35px;
-    }
+    float: left;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 0 0 14px;
+    margin-top: 32px;
   }
 }
-
+.logo {
+  height: 22px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #333333;
+  display: inline-block;
+  float: left;
+  padding-left:84px;
+  margin-top: 30px;
+  background: url("../imgs/spirit.png") no-repeat -223px -1px;
+}
+.follow-btn {
+  i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: url("../imgs/spirit.png") no-repeat -45px -6px;
+  }
+  width: 54px;
+  float: left;
+  line-height: 20px;
+  background-color: #21a557;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 2px;
+  margin:32px 0 0 30px;
+}
 .followed-btn {
   i {
     display: inline-block;
@@ -142,38 +116,45 @@
   color: #333333;
   font-size: 12px;
   border-radius: 2px;
-  margin-top: 33px;
+  margin: 32px 0 0 30px;
 }
-
 .followed-btn:hover {
   background-color: #ffffff;
 }
-
 .cancel:hover {
   color: #21a557;
   text-decoration: underline;
 }
-
-.logo {
-  display: inline-block;
-  float: left;
-  span {
-    line-height: 90px;
-    font-size: 22px;
-    font-weight: 400;
-    font-family: "冬青黑体简体中文 W3";
-    color: #333333;
-  }
-  i {
+.nav-link {
+  padding-left: 60px;
+  a {
     display: inline-block;
-    vertical-align: middle;
-    padding: 0 13px 0 0;
-    margin-bottom: 6px;
-    width: 70px;
-    height: 20px;
-    background: url("../imgs/spirit.png") no-repeat -223px -3px;
+    color: #666666;
+    font-size: 16px;
+    font-family: "冬青黑体简体中文 W3";
+    line-height: 90px;
+    &:hover{
+      cursor: pointer;
+      color:#39a030;
+    }
   }
 }
+.nav-srch {
+  padding: 36px 16px 0 30px;
+  height: 90px;
+  a {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../imgs/spirit.png") no-repeat;
+    &:hover{
+      cursor: pointer;
+      background: url("../imgs/spirit.png") no-repeat 0 -18px;
+    }
+  }
+}
+//导航结束
+
 
 .bannar {
   position: relative;
@@ -210,16 +191,18 @@
       float: left;
       padding-left: 80px;
       width: 33.3333%;
-      //height: 176px;
       box-sizing: border-box;
       div {
-        //display: inline-block;
         margin: -15px 0 0 100px;
         a {
           display: block;
           font-size: 14px;
           color: #39a030;
           margin-top: 30px;
+          &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -227,7 +210,7 @@
 }
 
 .intr-a {
-  //display: inline-block;
+
   float: left;
   width: 80px;
   height: 80px;
@@ -299,7 +282,7 @@
         z-index: 1000;
         display: block;
       }
-      li:hover .zzzzzz{
+      li:hover .up-hover{
         display: none;
       }
       li {
@@ -310,17 +293,19 @@
         height: 230px;
         width: 220.8px;
         border: 1px solid #ebebeb;
-        box-shadow: 0px 1px 1px 0px #f1f1f1;
+        box-shadow: 0 1px 1px 0px #f1f1f1;
         background: #fff;
         color: #333;
-        img {
-          width: 221px;
-          height: 123px;
-        }
-        div {
-          margin: 10px 5px;
-        }
       }
+    }
+  }
+  .up-hover{
+    img {
+      width: 221px;
+      height: 123px;
+    }
+    div {
+      margin: 10px 5px;
     }
   }
   .right {
@@ -339,7 +324,7 @@
   width: 475px;
   position: absolute;
   border: 1px solid #ccc;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
   z-index: 1000;
 }
 
@@ -587,19 +572,15 @@
 
 .footer {
   width: 100%;
-  //height: 100px;
-  //padding: 80px 0;
   background-color: #2c3339;
 }
 
 .innerfooter {
-  //padding: 80px 200px 80px 50px;
   height: 100px;
   padding: 80px 0;
   div {
     display: inline-block;
     float: left;
-    //background-color: red;
   }
 }
 
@@ -618,6 +599,9 @@
       font-size: 16px;
       a {
         color: #abadb0;
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -685,10 +669,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: -144px;
+  margin-left: -194px;
+ // transform: translate(-50%, -50%);
   background-color: #fff;
   box-sizing: border-box;
   padding: 30px 0 40px 40px;
+  -webkit-animation:600ms move linear;
   i {
     display: block;
     position: absolute;
