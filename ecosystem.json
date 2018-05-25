@@ -1,0 +1,27 @@
+{
+    "apps:": [
+        {
+            "name": "test",
+            "script": "index.html",
+            "env": {
+                "COMMON_VARIABLE": "true"
+            },
+            "env_production": {
+                "NODE_ENV": "production"
+            }
+        }
+    ],
+    "deploy": {
+        "production": {
+            "user": "zzw",
+            "host": ["47.98.174.82"],
+            "ref": "origin/master",
+            "repo": "https://github.com/Superzzw1994/finaltest.git",
+            "path": "/www/finaltest/production",
+            "ssh_options": "StrictHostKeyChecking=no",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    }
+}
